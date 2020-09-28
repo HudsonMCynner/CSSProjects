@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400;500;600;700;800;900&display=swap');
+body {
+  margin: 0;
+  padding: 0;
+}
+svg {
+  fill: none;
+  stroke: currentColor;
+  width: 500px;
+  height: 500px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+svg .draw {
+  stroke: #000;
+  stroke-width: 2px;
+  fill: transparent;
+  stroke-dasharray: 3200;
+  stroke-dashoffset: 3200;
+  animation: animate 5s forwards;
+}
+@keyframes animate {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animation {
+  animation: animate 5s forwards infinite;
+}
+.logo .inner-lines{
+  stroke-dasharray: 65;
+  stroke-dashoffset: 65;
+}
+.logo .inner-circle-one {
+  stroke-dasharray: 568;
+  stroke-dashoffset: 568;
+}
+.logo .inner-circle-two {
+  stroke-dasharray: 541;
+  stroke-dashoffset: 541;
+}
+.logo .inner-circle-tree {
+  stroke-dasharray: 461;
+  stroke-dashoffset: 461;
+}
+.logo .inner-circle-four {
+  stroke-dasharray: 252;
+  stroke-dashoffset: 252;
+}
+@keyframes animate {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
