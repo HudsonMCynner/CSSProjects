@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .container {
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      background: #111;
+    }
+    .container .box {
+      position: relative;
+      width: 50px;
+      height: 50px;
+      background: #111;
+      float: left;
+      border: 1px solid rgba(0,0,0,0.2);
+      box-sizing: border-box;
+      overflow: hidden;
+      margin: 50px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div id="div1" class="box" style="background: white;"></div>
+  <div id="div2" class="box" style="background: white;"></div>
+  <div id="div3" class="box" style="background: white;"></div>
+  <div id="div4" class="box" style="background: white;"> </div>
+  <div id="div5" class="box" style="background: white;"> </div>
+  <div id="div6" class="box" style="background: white;"> </div>
+  <div id="div7" class="box" style="background: white;"> </div>
+  <div id="div8" class="box" style="background: white;"> </div>
+  <div id="div9" class="box" style="background: white;"> </div>
+<!--  <svg xmlns="http://www.w3.org/2000/svg" style=" position: fixed;-->
+<!--    top: 40px;-->
+<!--    left: 70px;-->
+<!--    width: 110px;-->
+<!--    height: 110px;">-->
+<!--    <circle cx="5" cy="5" r="5" fill="red" id="svg_2"/>-->
+<!--    <path d=" M 1 5 L 100 5 L 100 110"-->
+<!--          stroke="red" stroke-width="2" fill="none" />-->
+<!--    <circle cx="100" cy="105" r="5" fill="red" id="svg_2"/>-->
+<!--  </svg>-->
+</div>
+
+<!--<svg width="100" height="100">-->
+<!--  <path d=" M 10 25-->
+<!--            L 10 75-->
+<!--            L 60 75-->
+<!--            L 10 25"-->
+<!--        stroke="red" stroke-width="2" fill="none" />-->
+<!--</svg>-->
+
+<!--<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">-->
+<!--  <path d=" M 10 25-->
+<!--            L 10 75-->
+<!--            L 60 75"-->
+<!--        stroke="red" stroke-width="2" fill="none" />-->
+<!--</svg>-->
+
+<!--<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">-->
+<!--  <path d=" M 10 75-->
+<!--            L 60 75-->
+<!--            L 60 25"-->
+<!--        stroke="red" stroke-width="2" fill="none" />-->
+<!--</svg>-->
+
+<!--<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">-->
+<!--  <path d=" M 10 75-->
+<!--            L 10 25-->
+<!--            L 60 25"-->
+<!--        stroke="red" stroke-width="2" fill="none" />-->
+<!--</svg>-->
+
+<!--<svg width="200" height="210" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">-->
+<!--  &lt;!&ndash; Points &ndash;&gt;-->
+
+<!--  <g>-->
+<!--    <title>Layer 1</title>-->
+<!--    <circle cx="10.76697" cy="112.75001" r="10" fill="red" id="svg_2"/>-->
+<!--    <line stroke="#000000" id="svg_5" y2="156.90167" x2="11.08903" y1="122.73798" x1="11" stroke-width="5" fill="none"/>-->
+<!--    <line id="svg_6" y2="155.563" x2="126.80729" y1="154.35842" x1="13.55335" stroke-width="5" stroke="#000000" fill="none"/>-->
+<!--    <circle cx="136.66516" cy="154.66968" r="10" fill="red" id="svg_3"/>-->
+<!--  </g>-->
+<!--</svg>-->
+
+
+<script>
+  function createsvg () {
+    const svg1 = document. createElementNS("http://www.w3.org/2000/svg", "svg");
+    const path = document. createElementNS("http://www.w3.org/2000/svg", "path");
+    svg1.setAttribute("width", "100");
+    svg1.setAttribute("height", "100");
+    svg1.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+    path.setAttribute("d", "M 10 25 L 75 25 L 75 75");
+    path.setAttribute("stroke", "red");
+    path.setAttribute("stroke-width", "2");
+    path.setAttribute("fill", "none");
+    svg1.appendChild(path);
+    document.querySelector("body").appendChild(svg1);
+  }
+
+  function makePath (origem = '#div2', destino = '#div1') {
+    debugger
+    let origemOffSetTop = document.querySelector(origem).offsetTop
+    let origemOffSetLeft = document.querySelector(origem).offsetLeft
+    let destinoOffSetTop = document.querySelector(destino).offsetTop
+    let destinoOffSetLeft = document.querySelector(destino).offsetLeft
+
+    let top = document.querySelector(origem).offsetTop - 18
+    let left = (document.querySelector(origem).offsetLeft / 2)
+    let width = document.querySelector(origem).offsetLeft - document.querySelector(destino).offsetLeft
+    let height = document.querySelector(origem).offsetTop !== document.querySelector(destino).offsetTop ? document.querySelector(origem).offsetTop - document.querySelector(destino).offsetTop : 20
+    let directionX = document.querySelector(origem).offsetLeft > document.querySelector(destino).offsetLeft ? 'L' : 'R'
+    let directionY = document.querySelector(origem).offsetTop < document.querySelector(destino).offsetTop ? 'DW' : 'UP'
+    // cima direira   "M 10 25 L 75 25 L 75 75"
+    // baixo direita  "M 10 25 L 10 75 L 60 75"
+    // cima esquerda  "M 10 75 L 10 25 L 60 25"
+    // baixo esquerda "M 10 75 L 60 75 L 60 25"
+
+    //  M 1 5 L 100 5 L 100 110 - Up Right
+    const svg1 = document. createElementNS("http://www.w3.org/2000/svg", "svg");
+    const path = document. createElementNS("http://www.w3.org/2000/svg", "path");
+    svg1.style.width = width + 'px'
+    svg1.style.height = height + 'px'
+    svg1.style.top = top + 'px'
+    svg1.style.left = left + 'px'
+    svg1.style.position = 'fixed'
+    svg1.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+    path.setAttribute("d", `M 1 5 L ${width - 30} 5 L ${width - 30} ${width - 20}`);
+    path.setAttribute("stroke", "red");
+    path.setAttribute("stroke-width", "2");
+    path.setAttribute("fill", "none");
+    svg1.appendChild(path);
+    document.querySelector("#div2").appendChild(svg1);
+
+
+  }
+
+  function upRi () {
+
+  }
+
+  function getClasses (indetificador, classes, end) {
+    let node = document.querySelector(indetificador)
+    let parent = node.offsetParent
+    if (node.classList === end) {
+      return classes
+    }
+    return getClasses(parent, classes, end)
+  }
+
+  makePath()
+
+</script>
+
+</body>
+</html>
