@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="./main.css">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>Sistema em Manutenção</title>
+</head>
+<body>
+<div class="content">
+  <img alt="maintenance" src="./logo.png" style="width: 600px; height: 200px">
+  <h1 class="lang title">Olá! Estamos realizando uma pequena manutenção</h1>
+  <p class="lang subtitle">Em instantes você poderá entrar novamente e continuar com as suas atividades!</p>
+  <div><span>A página será redirecionada automaticamente dentro de: <span id="tempoReverso">15:00</span> minutos.</span></div>
+  <hr>
+  <footer>
+    <span class="lang footer">Precisa de ajuda? Entre em contato na nossa</span>
+    <a href="https://servidorseguro.mysuite2.com.br/client/login.php?sl=tdr&" class="lang help">Central de Ajuda</a>
+  </footer>
+</div>
+
+<script>
+  function timer (secNum, elementTag) {
+    let el = document.querySelector(elementTag)
+    secNum = parseInt(secNum, 10)
+    let hours = Math.floor(secNum / 3600)
+    let minutes = Math.floor((secNum - (hours * 3600)) / 60)
+    let seconds = secNum - (hours * 3600) - (minutes * 60)
+
+    if (hours < 10) {
+      hours = '0' + hours
+    }
+    if (minutes < 10) {
+      minutes = '0' + minutes
+    }
+    if (seconds < 10) {
+      seconds = '0' + seconds
+    }
+    el.innerHTML = minutes + ':' + seconds
+  }
+
+  function intervalReverse () {
+    let seconds = 2700 // 15 minutos
+    setInterval(function () {
+      timer(seconds, '#tempoReverso')
+      if (seconds < 2) {
+        window.location = 'https://tdrinformatica.com.br/'
+      }
+      seconds--
+    }, 1000)
+  }
+
+  intervalReverse()
+</script>
+
+
+</body>
+</html>
